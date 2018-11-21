@@ -1,18 +1,12 @@
 # JNIKeyProtection
 Android 使用 so 文件存储私密数据，并增加签名防盗机制
 
--------------------
-
 ## 0x00 实际项目中引出的一些需求问题
 > 有时你需要在客户端存放一些保密的数据，比如某些授权 Key ，如果直接写在 Java 中，会很容易被反编译看到，那么我们可以把这些数据存在 so 文件中，来增加反编译难度，并且增加 APP 签名防盗机制来防止别人盗用 so 文件。
-
--------------------
 
 ## 0x01 一些准备工作
 - 配置 NDK 开发环境，看这里 → [Android Studio NDK 开发安装配置](https://rockycoder.cn/android%20ndk/2018/01/18/Android-Studio-JNI-Exercise.html)  
 - 有必要的了解一下 NDK 开发基础（此例子使用的是 CMake）、最好学习一下 C/C++ 基础，不然代码看起来很费劲
-
--------------------
 
 ## 0x02 编写配置文件、Java、C/C++ 代码
 1、新建 JNIKey.class 并声明 native 方法
@@ -128,8 +122,6 @@ externalNativeBuild {
 7、在 cpp 文件夹下新建 Key.cpp 文件里面放 c++ 代码
 > 完整代码 → [Key.cpp](https://github.com/RockyQu/JNIKeyProtection/blob/master/JNIKey/src/main/cpp/Key.cpp)  
 
--------------------
-
 ## 0x03 调用生成的 .so 文件
 - 默认 .so 文件生成目录，复制出来放到 libs 目录下，即可使用
 
@@ -142,7 +134,5 @@ externalNativeBuild {
 ```
 {项目目录}\JNIKey\build\intermediates\intermediate-jars\debug\classes.jar
 ```
-
--------------------
 
 ## 0x04 完整开源项目 → [JNIKeyProtection](https://github.com/RockyQu/JNIKeyProtection)
