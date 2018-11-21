@@ -50,7 +50,8 @@ javah -d jni -classpath D:\Android\Workspace\JNIKeyProtection\Key\build\intermed
 
 4、在 src\main 目录下新建 cpp 目录，新建 Key.cpp 文件在这里编写 C++ 代码，.cpp 表示 C++ 文件, .c 表示 C 文件
 
-![1](/assets/image/2018-11-18/2018-11-18_1.png)
+![1](https://github.com/RockyQu/RockyQu.github.io/blob/master/assets/image/2018-11-18/2018-11-18_1.png)
+![screenshots](https://github.com/DesignQu/Logg/blob/master/ImageFolder/screenshots.png "screenshots")
 
 5、在 Module 根目录下新建 CmakeLists.txt 文件，配置 JNI 相关参数
 
