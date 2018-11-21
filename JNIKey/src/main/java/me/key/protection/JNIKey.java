@@ -1,15 +1,10 @@
 package me.key.protection;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-
 /**
  * 用来加载 DecryptKey.so 获取解密 Key，内含签名防盗机制
  * <p>
- * 生成 .h 文件
- * 例：javah -d jni -classpath D:\Android\Workspace\DecryptKey\Key\build\intermediates\javac\debug\compileDebugJavaWithJavac\classes com.ld.decrypt.key.JNIDecryptKey
+ * 生成 .h 文件，如果你用的是动态注册，这步可以省略
+ * 例：javah -d jni -classpath D:\Android\Workspace\JNIKeyProtection\Key\build\intermediates\javac\debug\compileDebugJavaWithJavac\classes me.key.protection.JNIKey
  */
 public class JNIKey {
 
@@ -27,25 +22,7 @@ public class JNIKey {
     /**
      * 获取 Key
      *
-     * @return 解密 Key
+     * @return return key
      */
     public static native String getKey();
-
-    /**
-     * 获取应用签名，获取签名后替换 Key.cpp 的 SIGNATURE_KEY 变量
-     *
-     * @param context
-     * @return
-     */
-    public static String getSignature(Context context) {
-        try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
-            Signature[] signatures = packageInfo.signatures;
-            return signatures[0].toCharsString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }

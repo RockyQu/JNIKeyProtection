@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import me.key.protection.JNIKey;
+import me.key.protection.JNISignature;
 
 /**
  * 使用 so 文件存储私密数据，并增加签名防盗机制
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Context context = this.createPackageContext("me.decrypt.key", CONTEXT_INCLUDE_CODE | CONTEXT_IGNORE_SECURITY);
 
-            Log.e("MainActivity", JNIKey.getSignature(getApplicationContext()));
+            Log.e("MainActivity", JNISignature.getSignature(getApplicationContext()));
             boolean flag = JNIKey.init();
             Log.e("MainActivity", String.valueOf(flag));
             String key = JNIKey.getKey();
