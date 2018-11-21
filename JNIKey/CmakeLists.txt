@@ -1,0 +1,33 @@
+# 指定编译器版本
+cmake_minimum_required(VERSION 3.4.1)
+
+# 存放生成 so 库的目录
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/libs/${ANDROID_ABI})
+
+# 配置 so 库信息
+add_library(
+
+        # 生成的 so 库名称，此处生成的 so 文件名称是libKey.so
+        Key
+
+        # STATIC：静态库，是目标文件的归档文件，在链接其它目标的时候使用
+        # SHARED：动态库，会被动态链接，在运行时被加载
+        # MODULE：模块库，是不会被链接到其它目标中的插件，但是可能会在运行时使用dlopen-系列的函数动态链接
+        SHARED
+
+        # 资源文件，可以多个，资源路径是相对路径，相对于本CMakeLists.txt所在目录
+        src/main/cpp/Key.cpp)
+
+# 依赖 NDK 中的 log 日志库
+find_library(
+        log-lib
+        log)
+
+# 关联 log 库到本地库。如果你本地的库（DecryptKey）想要调用log库的方法，那么就需要配置这个属性
+target_link_libraries(
+
+        # 目标库
+        Key
+
+        # 依赖库
+        ${log-lib})
